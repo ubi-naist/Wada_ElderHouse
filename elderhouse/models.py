@@ -58,6 +58,19 @@ class Beacon(models.Model):
     updated_at = models.DateTimeField(default=timezone.now())
 
 
-        def __str__(self):
-            return '{} {} {} {} {} {} {}'.format(self.bid, self.uuid, self.major,self.minor,
+    def __str__(self):
+        return '{} {} {} {} {} {} {}'.format(self.bid, self.uuid, self.major,self.minor,
             self.type, self.created_at, self.updated_at)
+
+class Record(models.Model):
+    rid = models.UUIDField()
+    sid = models.UUIDField()
+    uid = models.UUIDField()
+    areaid = models.UUIDField()
+    cid = models.UUIDField()
+    created_at = models.DateTimeField(default=timezone.now())
+    updated_at = models.DateTimeField(default=timezone.now())
+
+    def __str__(self):
+        return '{} {} {} {} {} {} {}'.format(self.rid, self.sid, self.uid, self.areaid,
+         self.cid, self.created_at, self.updated_at)

@@ -17,8 +17,8 @@ class Staff(models.Model):
     sname = models.CharField(max_length=100)
     gender = models.CharField(max_length=20)
     age = models.IntegerField()
-    created_at = models.DateTimeField(default=timezone.now())
-    updated_at = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
     device_name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -32,8 +32,8 @@ class Resident(models.Model):
     age = models.IntegerField()
     height = models.IntegerField(default=0)
     weight = models.IntegerField(default=0)
-    created_at = models.DateTimeField(default=timezone.now())
-    updated_at = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return '{} {} {} {} {} {} {} {}'.format(self.uid, self.uname, self.gender,
@@ -42,8 +42,8 @@ class Resident(models.Model):
 class Area(models.Model):
     areaid = models.UUIDField()
     areaname = models.CharField(max_length=20)
-    created_at = models.DateTimeField(default=timezone.now())
-    updated_at = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return '{} {} {} {}'.format(self.areaid, self.areaname, self.created_at, self.updated_at)
@@ -54,8 +54,8 @@ class Beacon(models.Model):
     major = models.IntegerField()
     minor = models.IntegerField()
     type = models.CharField(max_length=20)
-    created_at = models.DateTimeField(default=timezone.now())
-    updated_at = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
 
     def __str__(self):
@@ -68,9 +68,32 @@ class Record(models.Model):
     uid = models.UUIDField()
     areaid = models.UUIDField()
     cid = models.UUIDField()
-    created_at = models.DateTimeField(default=timezone.now())
-    updated_at = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return '{} {} {} {} {} {} {}'.format(self.rid, self.sid, self.uid, self.areaid,
          self.cid, self.created_at, self.updated_at)
+
+class CareType(models.Model):
+    tid = models.UUIDField()
+    sid = models.UUIDField()
+
+    def __str__(self):
+        return '{} {}'.format(self.tid, self.uid)
+
+class ToiletRecord(models.Model):
+    toilet_id = models.UUIDField()
+    toilet_status = models.CharField(max_length=30)
+    toilet_amount = models.CharField(max_length=30)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.toilet_id, self.toilet_status, self.toilet_amount)
+
+class BathRecord(models.Model):
+    bath_id = models.UUIDField()
+    bath_medicine = models.CharField(max_length=30)
+    bath_status = models.CharField(max_length=30)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.bath_id, self.bath_medicine, self.bath_status)

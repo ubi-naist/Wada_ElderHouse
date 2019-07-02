@@ -54,13 +54,14 @@ class Beacon(models.Model):
     major = models.IntegerField()
     minor = models.IntegerField()
     type = models.CharField(max_length=20)
+    typeid = models.UUIDField()
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
 
 
     def __str__(self):
-        return '{} {} {} {} {} {} {}'.format(self.bid, self.uuid, self.major,self.minor,
-            self.type, self.created_at, self.updated_at)
+        return '{} {} {} {} {} {} {} {}'.format(self.bid, self.uuid, self.major,self.minor,
+            self.type, self.typeid, self.created_at, self.updated_at)
 
 class Record(models.Model):
     rid = models.UUIDField()
@@ -76,11 +77,11 @@ class Record(models.Model):
          self.cid, self.created_at, self.updated_at)
 
 class CareType(models.Model):
-    tid = models.UUIDField()
-    sid = models.UUIDField()
+    careid = models.UUIDField()
+    careType = models.CharField(max_length=30)
 
     def __str__(self):
-        return '{} {}'.format(self.tid, self.uid)
+        return '{} {}'.format(self.careid, self.careType)
 
 class ToiletRecord(models.Model):
     toilet_id = models.UUIDField()
